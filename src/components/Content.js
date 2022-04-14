@@ -5,42 +5,43 @@ import ArticleSkeleton from "./ArticleSkeleton";
 const Content = () => {
   const [articles, setArticles] = useState([]);
 
-  const handleScroll = () => {
-    const html = document.documentElement;
-    const body = document.body;
-    const windowHeight =
-      "innerHeight" in window ? window.innerHeight : html.offsetHeight;
+  // const handleScroll = () => {
+  //   console.log("handling scroll");
+  //   const html = document.documentElement;
+  //   const body = document.body;
+  //   const windowHeight =
+  //     "innerHeight" in window ? window.innerHeight : html.offsetHeight;
 
-    const docHeight = Math.max(
-      body.scrollHeight,
-      body.offsetHeight,
-      html.clientHeight,
-      html.scrollHeight,
-      html.offsetHeight
-    );
+  //   const docHeight = Math.max(
+  //     body.scrollHeight,
+  //     body.offsetHeight,
+  //     html.clientHeight,
+  //     html.scrollHeight,
+  //     html.offsetHeight
+  //   );
 
-    const windowBottom = windowHeight + window.pageYOffset;
-    if (windowBottom >= docHeight - 10) {
-      window.removeEventListener("scroll", handleScroll);
-      fetchAgain();
-    }
-  };
+  //   const windowBottom = windowHeight + window.pageYOffset;
+  //   if (windowBottom >= docHeight - 10) {
+  //     window.removeEventListener("scroll", handleScroll);
+  //     fetchAgain();
+  //   }
+  // };
 
-  const fetchAgain = async () => {
-    if (articles.length != 0) {
-      await fetch("https://dev.to/api/articles")
-        .then((res) => res.json())
-        .then((result) => {
-          setArticles([...articles, ...result]);
-        });
-    }
-  };
+  // const fetchAgain = async () => {
+  //   if (articles.length != 0) {
+  //     fetch("https://dev.to/api/articles")
+  //       .then((res) => res.json())
+  //       .then((result) => {
+  //         setArticles([...articles, ...result]);
+  //       });
+  //   }
+  // };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [articles]);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, [articles]);
 
   useEffect(() => {
     setTimeout(async () => {
